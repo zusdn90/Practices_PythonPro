@@ -64,7 +64,7 @@ class ImportGitHubStarsCommand:
                 
                 if data['preserve_timestamps']:
                     timestamp = datetime.strptime(
-                        repo_info['start_at'],
+                        repo_info['starred_at'],
                         '%Y-%m-%dT%H:%M:%SZ'
                     )
                 else:

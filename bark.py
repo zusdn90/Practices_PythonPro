@@ -51,20 +51,30 @@ def get_bookmark_id_for_deletion():
 def clear_screen():
     clear = 'cls' if os.name == 'nt' else 'clear'
     os.system(clear)
+    
+def get_github_import_options():
+    return {
+        'github_username': get_user_input('Github username'),
+        'preserve_timestamps': get_user_input('Preserve timestamps [Y/n]',
+                                              required=False) in {'Y', 'y', None} # "Y", "y", 또는 그냥 Enter를 누르면 '그렇다'는 의미로 받음
+    }
 
 def loop():
     options = {
         'A': Option('Add a bookmark', commands.AddBookmarkCommand(), prep_call=get_new_bookmark_data),
-        'B': Option('List bookmark by date', commands.ListBookmarkCommand()),
-        'T': Option('List bookmark by title', commands.ListBookmarkCommand(order_by='title')),
+        'B': Option('List bookmark by date', commands.ListBookmarksCommand()),
+        'T': Option('List bookmark by title', commands.ListBookmarksCommand(order_by='title')),
         'D': Option('Delete a bookmark', commands.DeleteBookmarkCommand(), prep_call=get_bookmark_id_for_deletion),
+        'G': Option('Imported GitHub stars', commands.ImportGitHubStarsCommand(), prep_call=get_github_import_options),
         'Q': Option('Quit', commands.QuitCommand()),
     }
-    clear_screen()
     print_options(options)
+
     chosen_option = get_option_choice(options)
     clear_screen()
     chosen_option.choose()
+
+    _ = input('Press ENTER to return to menu')
     
 
 # 표현 계층

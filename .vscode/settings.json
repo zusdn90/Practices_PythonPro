@@ -1,0 +1,15 @@
+{
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": false,
+    "python.pythonPath": "/Users/hwhong/.pyenv/versions/3.6.9/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "black",
+    "python.linting.mypyEnabled": true,
+    "python.testing.promptToConfigure": false
+}
